@@ -1,19 +1,18 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
+  Routes,
+  Route
 } from "react-router-dom";
+import { LoginPage } from "./pages";
 
 export default function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/login">
-        </Route>
-        <Redirect to="/login" />
-      </Switch>
+      <Routes>
+        <Route path="/" element={ <LoginPage/> }/>
+        <Route path="/login" element={ <LoginPage/> }/>
+      </Routes>
     </Router>
   );
 }
