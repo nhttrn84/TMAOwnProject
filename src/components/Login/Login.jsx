@@ -41,7 +41,7 @@ const Login = () => {
 
     // Password validation
     if (!validatePassword(password)) {
-      setPasswordError('Password must be at least 8 characters, including one letter and one number.');
+      setPasswordError('Password must be at least 8 characters.');
       valid = false;
     }
 
