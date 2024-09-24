@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../features/auth/authSlice';
-import { Logo, Envelope, Lock, EyeClosed, EyeOpened, Phone } from "../../assets";
+import { Logo, Envelope, Lock, EyeClosed, EyeOpened, Phone, Vietnam, English } from "../../assets";
 import { Card, Typography, Box, TextField, Button, IconButton, InputAdornment, Link } from '@mui/material';
 
 const Register = () => {
@@ -122,6 +122,18 @@ const Register = () => {
           Log In
         </Link>
       </Typography>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Box display="inline-flex" justifyContent="center" alignItems="center" sx={{ mt: 2, p: 0.5, backgroundColor: '#ADC9F5', borderRadius: '10px' }}>
+          <Button sx={{ borderRadius: '10px 0 0 10px', p: 1 }}>
+            <Vietnam style={{ width: '24px', marginRight: '8px' }} />
+            <Typography variant="body2" sx={{ color: '#6F6F6F' }}>VIE</Typography>
+          </Button>
+          <Button sx={{ borderRadius: '0 10px 10px 0', backgroundColor: '#77A5EE', p: 1 }}>
+            <English style={{ width: '24px', marginRight: '8px' }} />
+            <Typography variant="body2" sx={{ color: '#FFF' }}>ENG</Typography>
+          </Button>
+        </Box>
+      </Box>
     </Card>
   );
 };
