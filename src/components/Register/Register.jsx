@@ -112,6 +112,7 @@ const Register = () => {
       {renderTextField("Phone Number", "phone", "text", "Phone number", <Phone style={{ width: '24px', height: '24px'}}/>)}
       {error && <Typography color="error">{error}</Typography>}
       {registered && <Typography color="primary">Registration successful!</Typography>}
+      {error && <Typography sx={{ color: 'red', textAlign: 'center', mb: '1rem' }}>{error}</Typography>}
       <Button fullWidth variant="contained" color="primary" onClick={handleSubmit} style={{ margin: '1rem 0' }} disabled={loading}>
         {loading ? 'Registering...' : 'Sign Up'}
       </Button>

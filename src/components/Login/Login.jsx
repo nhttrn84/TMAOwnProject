@@ -57,8 +57,6 @@ const Login = () => {
         <Logo style={{ height: '60px' }} />
       </Box>
       <Typography style={{ color: "#216CE3", fontSize: '24px', fontWeight: '600' }}>Login</Typography>
-      
-      {/* Email Field */}
       <TextField
         fullWidth
         placeholder="Your email"
@@ -90,8 +88,6 @@ const Login = () => {
           }
         }}
       />
-
-      {/* Password Field */}
       <TextField
         fullWidth
         placeholder="Your password"
@@ -132,11 +128,7 @@ const Login = () => {
           }
         }}
       />
-
-      {/* Global error message */}
       {error && <Typography sx={{ color: 'red', textAlign: 'center', mb: '1rem' }}>{error}</Typography>}
-
-      {/* Remember me and Forgot password */}
       <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
         <FormControlLabel 
           control={<Checkbox style={{ color: '#CCC' }} />}
@@ -148,8 +140,6 @@ const Login = () => {
           </Typography>
         </Button>
       </Box>
-
-      {/* Login Button */}
       <Button
         fullWidth
         variant="contained"
@@ -160,8 +150,6 @@ const Login = () => {
       >
         {loading ? <CircularProgress size={24} sx={{ color: '#FFF' }} /> : 'Log In'}
       </Button>
-
-      {/* Sign up link */}
       <Typography variant="body2" align="center" sx={{ color: 'white' }}>
         Don&apos;t have an account yet?&ensp;
         <Link href="/register" color="primary" underline="hover">
