@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"; 
 import { login } from '../../features/auth/authSlice';
 import { Logo, Envelope, Lock, EyeClosed, EyeOpened } from "../../assets";
 import { Card, Typography, Box, FormControlLabel, Checkbox, TextField, Button, IconButton, InputAdornment, CircularProgress, Link } from '@mui/material';
@@ -12,7 +13,8 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.auth);
+  const navigate = useNavigate(); 
+  const { loading, error, isLoggedIn } = useSelector(state => state.auth);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -27,27 +29,28 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Reset error messages
     setEmailError('');
     setPasswordError('');
 
     let valid = true;
 
-    // Email validation
     if (!validateEmail(email)) {
       setEmailError('Please enter a valid email address.');
       valid = false;
     }
 
-    // Password validation
     if (!validatePassword(password)) {
       setPasswordError('Password must be at least 8 characters.');
       valid = false;
     }
 
-    // If both are valid, dispatch the login action
     if (valid) {
-      dispatch(login({ email, password }));
+      dispatch(login({ username: email, password }))
+        .then((action) => {
+          if (action.meta.requestStatus === 'fulfilled') { 
+            navigate('/dashboard'); 
+          }
+        });
     }
   };
 
