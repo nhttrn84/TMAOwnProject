@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { Box, Button, Card, Checkbox, CircularProgress, FormControlLabel, IconButton, InputAdornment, Link, TextField, Typography } from '@mui/material';
+import { Envelope, EyeClosed, EyeOpened, Lock, Logo } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"; 
+
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { login } from '../../features/auth/authSlice';
-import { Logo, Envelope, Lock, EyeClosed, EyeOpened, Vietnam, English } from "../../assets";
-import { Card, Typography, Box, FormControlLabel, Checkbox, TextField, Button, IconButton, InputAdornment, CircularProgress, Link } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
@@ -55,15 +59,15 @@ const Login = () => {
   };
 
   return (
-    <Card sx={{ backgroundColor: "#232F43", p: '2rem', borderRadius: '2rem', maxWidth: '400px', width: '100%', m: 'auto' }}>
+    <Card sx={{ backgroundColor: "#232F43", p: '2rem', borderRadius: '2rem', maxWidth: '308px', m: 'auto' }}>
       <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
         <Logo style={{ height: '60px' }} />
       </Box>
-      <Typography style={{ color: "#216CE3", fontSize: '24px', fontWeight: '600' }}>Login</Typography>
+      <Typography style={{ color: "#216CE3", fontSize: '24px', fontWeight: '600' }}>{t('login.login')}</Typography>
       <TextField
         fullWidth
-        placeholder="Your email"
-        label="Email"
+        placeholder={t('login.emailHolder')}
+        label={t('login.email')}
         variant="outlined"
         margin="normal"
         value={email}
@@ -93,8 +97,8 @@ const Login = () => {
       />
       <TextField
         fullWidth
-        placeholder="Your password"
-        label="Password"
+        placeholder={t('login.passwordHolder')}
+        label={t('login.password')}
         variant="outlined"
         margin="normal"
         type={hidePassword ? 'password' : 'text'}
@@ -135,11 +139,11 @@ const Login = () => {
       <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
         <FormControlLabel 
           control={<Checkbox style={{ color: '#CCC' }} />}
-          label={<Typography style={{ color: '#CCC' }}>Remember me</Typography>}
+          label={<Typography style={{ color: '#CCC' }}>{t('login.rememberMe')}</Typography>}
         />
         <Button color="primary">
           <Typography style={{ color: "#216CE3" }} sx={{ textTransform: 'capitalize' }}>
-            Forgot password
+          {t('login.forgotPassword')}
           </Typography>
         </Button>
       </Box>
@@ -151,27 +155,15 @@ const Login = () => {
         onClick={handleLogin}
         disabled={loading}
       >
-        {loading ? <CircularProgress size={24} sx={{ color: '#FFF' }} /> : 'Log In'}
+        {loading ? <CircularProgress size={24} sx={{ color: '#FFF' }} /> : <>{t('login.login')}</>}
       </Button>
       <Typography variant="body2" align="center" sx={{ color: 'white' }}>
-        Don&apos;t have an account yet?&ensp;
+        {t('login.dontHaveAccount')}
         <Link href="/register" color="primary" underline="hover">
-          Sign Up
+          {t('login.signUp')}
         </Link>
       </Typography>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Box display="inline-flex" justifyContent="center" alignItems="center" sx={{ mt: 2, p: 0.5, backgroundColor: '#ADC9F5', borderRadius: '10px' }}>
-          <Button sx={{ borderRadius: '10px 0 0 10px', p: 1 }}>
-            <Vietnam style={{ width: '24px', marginRight: '8px' }} />
-            <Typography variant="body2" sx={{ color: '#6F6F6F' }}>VIE</Typography>
-          </Button>
-          <Button sx={{ borderRadius: '0 10px 10px 0', backgroundColor: '#77A5EE', p: 1 }}>
-            <English style={{ width: '24px', marginRight: '8px' }} />
-            <Typography variant="body2" sx={{ color: '#FFF' }}>ENG</Typography>
-          </Button>
-        </Box>
-      </Box>
-      
+      <LanguageSwitcher/>
     </Card>
   );
 };

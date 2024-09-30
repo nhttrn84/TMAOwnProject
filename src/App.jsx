@@ -1,16 +1,30 @@
-import React from "react";
+import { Dashboard, LoginPage, RegisterPage } from "./pages";
 import {
+  Route,
   BrowserRouter as Router,
-  Routes,
-  Route
+  Routes
 } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import { Provider } from 'react-redux';
+import React from "react";
 import { store } from "./stores/store";
-import { LoginPage, RegisterPage, Dashboard } from "./pages";
 
 export default function App() {
   return (
     <Provider store={store}>
+      <ThemeProvider
+        theme={createTheme({
+          breakpoints: {
+            values: {
+              mobile: 0,
+              tablet: 768,
+              laptop: 1024,
+              desktop: 1200,
+            },
+          },
+        })}
+      >
       <Router>
         <Routes>
           <Route path="/" element={ <LoginPage/> }/>
@@ -19,6 +33,7 @@ export default function App() {
           <Route path="/register" element={ <RegisterPage/> }/>
         </Routes>
       </Router>
+      </ThemeProvider>
     </Provider>
   );
 }

@@ -1,0 +1,28 @@
+{
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Log In",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "dontHaveAccount": "Don't have an account? ",
+        "signUp": "Sign Up",
+        "emailHolder": "Your email",
+        "passwordHolder": "Your password"
+    },
+    "register": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "phone": "Phone number",
+        "signup": "Sign up",
+        "haveAccount": "Already have an account? ",
+        "login": "Log In",
+        "emailHolder": "Your email",
+        "passwordHolder": "Your password",
+        "nameHolder": "Your name",
+        "registrateSuccessful": "Registration Successful!"
+    }
+}

@@ -1,10 +1,14 @@
+import { Box, Button, Card, IconButton, InputAdornment, Link, TextField, Typography } from '@mui/material';
+import { Envelope, EyeClosed, EyeOpened, Lock, Logo, Phone } from "../../assets";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { register } from '../../features/auth/authSlice';
-import { Logo, Envelope, Lock, EyeClosed, EyeOpened, Phone, Vietnam, English } from "../../assets";
-import { Card, Typography, Box, TextField, Button, IconButton, InputAdornment, Link } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { loading, error, registered } = useSelector((state) => state.auth);
 
@@ -41,6 +45,7 @@ const Register = () => {
 
   const renderTextField = (label, name, type = 'text', placeholder, iconStart, iconEnd = null, visibility = null, setVisibility = null) => (
     <TextField
+      size="small"
       label={label}
       name={name}
       type={type}
@@ -91,49 +96,38 @@ const Register = () => {
   );
 
   return (
-    <Card style={{ backgroundColor: "#232F43", padding: '2rem', borderRadius: '2rem' }}>
-      <Box display="flex" justifyContent="center" alignItems="center" padding="2rem">
+    <Card style={{ backgroundColor: "#232F43", padding: '2rem', borderRadius: '2rem', maxWidth: '460px' }}>
+      <Box display="flex" justifyContent="center" alignItems="center" paddingLeft="2rem" paddingRight="2rem">
         <Logo style={{ height: '60px' }} />
       </Box>
-      <Typography style={{ color: "#216CE3", fontSize: '24px', fontWeight: '600' }}>Sign Up</Typography>
+      <Typography style={{ color: "#216CE3", fontSize: '24px', fontWeight: '600' }}>{t('register.signup')}</Typography>
       <Box 
         display="flex"
         justifyContent="center"
         alignItems="center"
       >
-        {renderTextField("First Name", "firstName", "text", "Your name", <Envelope style={{ width: '24px', height: '24px'}}/>)}
-        {renderTextField("Last Name", "lastName", "text", "Your name",  <Envelope style={{ width: '24px', height: '24px'}}/>)}
+        {renderTextField(t('register.firstName'), "firstName", "text", t('register.nameHolder'), <Envelope style={{ width: '24px', height: '24px'}}/>)}
+        {renderTextField(t('register.lastName'), "lastName", "text", t('register.nameHolder'),  <Envelope style={{ width: '24px', height: '24px'}}/>)}
       </Box>
-      {renderTextField("Email", "email", "text", "Your email", <Envelope style={{ width: '24px', height: '24px'}}/>)}
-      {renderTextField("Password", "password", hidePassword ? 'password' : 'text', "Your password", 
+      {renderTextField(t('register.email'), "email", "text", t('register.emailHolder'), <Envelope style={{ width: '24px', height: '24px'}}/>)}
+      {renderTextField(t('register.password'), "password", hidePassword ? 'password' : 'text', t('register.passwordHolder'), 
         <Lock style={{ width: '24px', height: '24px'}}/>, true, hidePassword, setHidePassword)}
-      {renderTextField("Confirm Password", "confirmPassword", hideConfirmPassword ? 'password' : 'text', "Your password", 
+      {renderTextField(t('register.confirmPassword'), "confirmPassword", hideConfirmPassword ? 'password' : 'text', t('register.passwordHolder'), 
         <Lock style={{ width: '24px', height: '24px'}}/>, true, hideConfirmPassword, setHideConfirmPassword)}
-      {renderTextField("Phone Number", "phone", "text", "Phone number", <Phone style={{ width: '24px', height: '24px'}}/>)}
+      {renderTextField(t('register.phone'), "phone", "text", t('register.phone'), <Phone style={{ width: '24px', height: '24px'}}/>)}
       {error && <Typography color="error">{error}</Typography>}
-      {registered && <Typography color="primary">Registration successful!</Typography>}
+      {registered && <Typography color="primary">{t('register.phone')}</Typography>}
       {error && <Typography sx={{ color: 'red', textAlign: 'center', mb: '1rem' }}>{error}</Typography>}
       <Button fullWidth variant="contained" color="primary" onClick={handleSubmit} style={{ margin: '1rem 0' }} disabled={loading}>
-        {loading ? 'Registering...' : 'Sign Up'}
+        {loading ? 'Registering...' : t('register.signup')}
       </Button>
       <Typography variant="body2" align="center" color="white">
-        Already have an account?&ensp;
+        {t('register.haveAccount')}
         <Link href="/login" color="primary" underline="hover">
-          Log In
+          {t('register.login')}
         </Link>
       </Typography>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Box display="inline-flex" justifyContent="center" alignItems="center" sx={{ mt: 2, p: 0.5, backgroundColor: '#ADC9F5', borderRadius: '10px' }}>
-          <Button sx={{ borderRadius: '10px 0 0 10px', p: 1 }}>
-            <Vietnam style={{ width: '24px', marginRight: '8px' }} />
-            <Typography variant="body2" sx={{ color: '#6F6F6F' }}>VIE</Typography>
-          </Button>
-          <Button sx={{ borderRadius: '0 10px 10px 0', backgroundColor: '#77A5EE', p: 1 }}>
-            <English style={{ width: '24px', marginRight: '8px' }} />
-            <Typography variant="body2" sx={{ color: '#FFF' }}>ENG</Typography>
-          </Button>
-        </Box>
-      </Box>
+      <LanguageSwitcher/>
     </Card>
   );
 };

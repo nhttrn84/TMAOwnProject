@@ -1,0 +1,28 @@
+{
+    "login": {
+        "email": "Email",
+        "password": "Mật khẩu",
+        "login": "Đăng nhập",
+        "rememberMe": "Nhớ tài khoản",
+        "forgotPassword": "Quên mật khẩu?",
+        "dontHaveAccount": "Bạn chưa có tài khoản? ",
+        "signUp": "Đăng ký",
+        "emailHolder": "Email của bạn",
+        "passwordHolder": "Mật khẩu của bạn"
+    },
+    "register": {
+        "firstName": "Họ",
+        "lastName": "Tên",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "confirmPassword": "Xác nhận mật khẩu",
+        "phone": "Số điện thoại",
+        "signup": "Đăng ký",
+        "haveAccount": "Bạn đã có tài khoản? ",
+        "login": "Đăng nhập",
+        "emailHolder": "Email của bạn",
+        "passwordHolder": "Mật khẩu của bạn",
+        "nameHolder": "Tên của bạn",
+        "registrateSuccessful": "Đăng ký thành công!"
+    }
+}

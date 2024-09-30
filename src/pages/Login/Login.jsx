@@ -1,18 +1,19 @@
-import React from "react";
-import { useMediaQuery, useTheme, Container, Box } from "@mui/material";
-import { Login, Carousel } from "../../components";
+import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
+import { Carousel, Login } from '../../components'; // Assuming you have these components
+
+import React from 'react';
 
 const LoginPage = () => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const matches = useMediaQuery(theme.breakpoints.up('tablet')); // For responsiveness
 
   return (
     <Container maxWidth={false} disableGutters
       sx={{
-        backgroundColor: 'black',
-        padding: '2rem',
+        backgroundColor: '#1C2636',
         width: '100vw',
         maxWidth: '100%',
+        padding: 0,
         margin: 0,
         display: 'flex',
         justifyContent: 'center',
@@ -20,34 +21,46 @@ const LoginPage = () => {
         minHeight: '100vh',
       }}
     >
+    {matches ? (
       <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        width="100%"
-        maxWidth="1200px" 
-        sx={{ flexDirection: { xs: 'column', sm: 'row' }, gap: '2rem' }}
+        sx={{ flexDirection: 'row', gap: '2rem', width: '100%', height: '100vh' }}
       >
         <Box
           sx={{
-            flex: '1', 
-            maxWidth: '100%',
+            flexBasis: '42%',
+            flexGrow: 1
           }}
         >
-          <Login />
+          <Login style={{
+            maxWidth: '308px'
+          }}/>
         </Box>
-
-        {matches && (
+        <Box
+          sx={{
+            flexBasis: '58%',
+            flexGrow: 1,
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
           <Box
             sx={{
-              flex: '1',
-              minWidth: '50vw',
+              width: '100%',
+              maxHeight: '100vh',
             }}
           >
             <Carousel />
           </Box>
-        )}
+        </Box>
       </Box>
+    ) : (
+      <Login/>
+    )}
     </Container>
   );
 };
